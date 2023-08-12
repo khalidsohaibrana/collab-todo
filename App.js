@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+
+import { useState } from 'react';
+
+import AuthContext from '././app/hooks/context';
+
+import UserStack from './UserStack';
+import AuthStack from './AuthStack';
+import Home from './app/screens/Home';
+import Details from './app/screens/Details';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [user, setUser] = useState();
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  return (
+    
+    //<Home/>
+    //<Details/>
+    <AuthContext.Provider value={{user, setUser}}>
+      {user ? <UserStack/> : <AuthStack/>}
+    </AuthContext.Provider>
+ 
+  ); 
+}
+ 
